@@ -80,6 +80,35 @@ export async function fetchPlaylistInfo(playlistId, apiKey) {
 }
 
 /**
+ * Fetches metadata for a single video by ID.
+ */
+export async function fetchVideoInfo(videoId, apiKey) {
+  const params = new URLSearchParams({
+    part: 'snippet',
+    id: videoId,
+    key: apiKey,
+  })
+
+  const data = await apiFetch(`${BASE_URL}/videos?${params}`)
+  const video = data.items?.[0]
+  if (!video) throw new Error('Video not found')
+
+  const thumbs = video.snippet.thumbnails
+
+  return {
+    id: videoId,
+    title: video.snippet.title,
+    thumbnail:
+      thumbs?.maxres?.url ||
+      thumbs?.high?.url ||
+      thumbs?.medium?.url ||
+      thumbs?.default?.url ||
+      '',
+    position: null,
+  }
+}
+
+/**
  * Fetches and normalizes all videos for a playlist.
  */
 export async function fetchPlaylistVideos(playlistId, apiKey) {

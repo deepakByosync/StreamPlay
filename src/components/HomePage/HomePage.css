@@ -50,34 +50,124 @@
   color: var(--text-muted);
 }
 
-.homepage__controls {
+/* ── Video Link Input ── */
+.homepage__link-section {
+  margin-bottom: 28px;
+  animation: fadeUp 0.35s ease;
+}
+
+.homepage__link-form {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.homepage__select-label {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  white-space: nowrap;
-}
-
-.homepage__select {
+.homepage__link-input {
+  flex: 1;
   background: var(--bg-elevated);
   color: var(--text-primary);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  font-size: 0.9rem;
-  cursor: pointer;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 0.95rem;
   transition: border-color var(--transition);
-  min-width: 160px;
 }
 
-.homepage__select:hover,
-.homepage__select:focus {
+.homepage__link-input::placeholder {
+  color: var(--text-muted);
+}
+
+.homepage__link-input:hover,
+.homepage__link-input:focus {
   outline: none;
   border-color: var(--accent);
+}
+
+.homepage__link-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.homepage__link-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.homepage__link-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.homepage__link-error {
+  margin-top: 10px;
+  color: #ff6b6b;
+  font-size: 0.88rem;
+}
+
+/* ── Playlist List ── */
+.homepage__playlists-section {
+  margin-bottom: 36px;
+  animation: fadeUp 0.4s ease;
+}
+
+.homepage__playlists-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.homepage__playlist-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.homepage__playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  text-align: left;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+}
+
+.homepage__playlist-item:hover {
+  background: var(--bg-hover);
+  border-color: var(--text-muted);
+  transform: translateY(-1px);
+}
+
+.homepage__playlist-item--active {
+  border-color: var(--accent);
+  background: rgba(229, 9, 20, 0.12);
+  box-shadow: 0 0 0 1px var(--accent-glow);
+}
+
+.homepage__playlist-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.homepage__playlist-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ── Playlist Info ── */
@@ -230,12 +320,16 @@
     gap: 16px;
   }
 
-  .homepage__controls {
+  .homepage__link-form {
+    flex-direction: column;
+  }
+
+  .homepage__link-btn {
     width: 100%;
   }
 
-  .homepage__select {
-    flex: 1;
+  .homepage__playlist-list {
+    grid-template-columns: 1fr;
   }
 
   .homepage__playlist-info {

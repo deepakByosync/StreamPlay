@@ -18,7 +18,9 @@ function VideoPlayer({ video }) {
       </div>
       <div className="video-player__meta">
         <h2 className="video-player__title">{video.title}</h2>
-        <span className="video-player__position">Video {video.position}</span>
+        {video.position != null && (
+          <span className="video-player__position">Video {video.position}</span>
+        )}
       </div>
     </section>
   )
