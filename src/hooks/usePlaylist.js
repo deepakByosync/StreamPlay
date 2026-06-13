@@ -5,11 +5,17 @@ import { YOUTUBE_API_KEY } from '../config/playlistConfig'
 export function usePlaylist(playlistId) {
   const [videos, setVideos] = useState([])
   const [playlistInfo, setPlaylistInfo] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const loadPlaylist = useCallback(async () => {
-    if (!playlistId) return
+    if (!playlistId) {
+      setVideos([])
+      setPlaylistInfo(null)
+      setLoading(false)
+      setError(null)
+      return
+    }
 
     if (!YOUTUBE_API_KEY) {
       setError(

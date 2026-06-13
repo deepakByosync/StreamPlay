@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { PLAYLISTS, DEFAULT_PLAYLIST_ID, YOUTUBE_API_KEY } from '../../config/playlistConfig'
+import { PLAYLISTS, YOUTUBE_API_KEY } from '../../config/playlistConfig'
 import { usePlaylist } from '../../hooks/usePlaylist'
 import { fetchVideoInfo } from '../../services/youtubeApi'
 import { extractYouTubeVideoId } from '../../utils/extractVideoId'
@@ -9,7 +9,7 @@ import VideoGrid from '../VideoGrid/VideoGrid'
 import './HomePage.css'
 
 function HomePage() {
-  const [selectedPlaylistId, setSelectedPlaylistId] = useState(DEFAULT_PLAYLIST_ID)
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState(null)
   const [activeVideo, setActiveVideo] = useState(null)
   const [videoLink, setVideoLink] = useState('')
   const [linkLoading, setLinkLoading] = useState(false)
@@ -137,14 +137,14 @@ function HomePage() {
         )}
       </div>
 
-      {loading && (
+      {selectedPlaylistId && loading && (
         <div className="homepage__state homepage__loading">
           <div className="homepage__spinner" />
           <p>Playlist videos load ho rahi hain...</p>
         </div>
       )}
 
-      {error && !loading && (
+      {selectedPlaylistId && error && !loading && (
         <div className="homepage__state homepage__error">
           <span className="homepage__error-icon">⚠</span>
           <p>{error}</p>
@@ -154,7 +154,7 @@ function HomePage() {
         </div>
       )}
 
-      {!loading && !error && (
+      {selectedPlaylistId && !loading && !error && (
         <>
           <section className="homepage__playlist-info">
             {playlistInfo?.thumbnail && (
