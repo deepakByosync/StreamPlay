@@ -85,6 +85,12 @@ export const PLAYLISTS = [
   },
 ];
 
+/** Static featured video — header button se play hoti hai */
+export const STATIC_VIDEO = {
+  id: '7-lK9EpBS_Y',
+  title: 'Featured Video',
+};
+
 /** Default playlist shown on first load */
 export const DEFAULT_PLAYLIST_ID = PLAYLISTS[0].id;
 
