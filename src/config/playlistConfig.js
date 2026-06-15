@@ -83,6 +83,10 @@ export const PLAYLISTS = [
     id: "PLvTTv60o7qj_tdY9zH7YceES7jfXiZkAz",
     label: "19. Engineering Maths : For All Branches ",
   },
+  {
+    id: "PLxCzCOWd7aiGmXg4NoX6R31AsC5LeCPHe",
+    label: "20. Digital Logic (Complete Playlist) ",
+  },
 ];
 
 /** Static featured video — header button se play hoti hai */
